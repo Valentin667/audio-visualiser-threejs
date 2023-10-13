@@ -1,5 +1,5 @@
 import s from "./Canvas.module.scss";
-import Scene from "../webgl/Scene";
+import Scene from "../../webgl/Scene";
 import { useEffect, useRef } from "react";
 
 const Canvas = () => {

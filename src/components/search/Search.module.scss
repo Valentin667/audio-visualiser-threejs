@@ -1,0 +1,17 @@
+.searchWrapper {
+    input{
+        position: fixed;
+        bottom: 10%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 400px;
+        border: none;
+        outline: 0;
+        background-color: transparent;
+        color: white;
+        border-bottom: 2px solid rgb(88, 67, 67);
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2em;
+    }
+}
