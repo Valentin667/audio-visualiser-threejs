@@ -1,9 +1,9 @@
 import * as THREE from "three";
 import AudioController from "../../utils/AudioController";
 
-export default class Cube {
+export default class Torus {
     constructor() {
-        const geometry = new THREE.BoxGeometry(1, 1, 1);
+        const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
     const material = new THREE.MeshNormalMaterial({});
     this.mesh = new THREE.Mesh(geometry, material);
     }

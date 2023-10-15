@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { gsap } from "gsap";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import Stats from "three/examples/jsm/libs/stats.module.js";
-import Cube from "./objects/Cube";
+import Torus from "./objects/Torus";
 
 class SCENE {
   setup(canvas) {
@@ -36,7 +36,7 @@ class SCENE {
       10000
     );
 
-    this.camera.position.z = 5;
+    this.camera.position.z = 100;
   }
 
   setupControl() {
@@ -76,15 +76,15 @@ class SCENE {
   }
 
   addObjects() {
-    this.cube = new Cube();
+    this.torus = new Torus();
 
-    this.scene.add(this.cube.mesh);
+    this.scene.add(this.torus.mesh);
   }
 
   tick = () => {
     this.stats.begin();
 
-    this.cube.tick();
+    this.torus.tick();
 
     this.renderer.render(this.scene, this.camera);
 
