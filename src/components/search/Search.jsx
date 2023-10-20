@@ -33,7 +33,7 @@ const Search = () => {
 
     return ( 
         <div className={s.searchWrapper}>
-            <input type="text" value={artist} onChange={(e) => setArtist(e.target.value)} onKeyDown={onKeyDown}></input>
+            <input type="text" placeholder="Type a song" value={artist} onChange={(e) => setArtist(e.target.value)} onKeyDown={onKeyDown}></input>
         </div>
     );
 };

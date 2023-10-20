@@ -3,6 +3,7 @@ import Search from "./components/search/Search";
 import s from "./App.module.scss";
 import Song from "./components/song/Song";
 import useCustomStore from "./customStore";
+import Picker from "./components/picker/Picker";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         })}
       </div>
       <Search />
+      <Picker />
       <Canvas />
     </div>
   );

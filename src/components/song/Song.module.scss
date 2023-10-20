@@ -6,6 +6,12 @@
     opacity: 0.5;
     transition: opacity 0.25s;
 
+    &:active {
+        opacity: 1;
+        color: white;
+        background-color: white;
+    }
+
     &:hover {
         opacity: 1;
     }
@@ -15,5 +21,10 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+
+        &:active {
+            opacity: 1;
+            color: white;
+        }
     }
 }
