@@ -1,7 +1,10 @@
 // import * as THREE from 'three'
 // // import Experience from './Experience'
-// import vertexShader from "../webgl/shaders/vertexShader"
-// import fragmentShader from "../webgl/shaders/fragmentShader"
+
+// // // eslint-disable-next-line import/no-webpack-loader-syntax
+// // import fragmentShader from "!!raw-loader!!glslify-loader!../../shaders/fragment.glsl";
+// // // eslint-disable-next-line import/no-webpack-loader-syntax
+// // import vertexShader from "!!raw-loader!!glslify-loader!../../shaders/vertexShader/glsl";
 
 // export default class Sphere
 // {
@@ -249,8 +252,8 @@
 //             {
 //                 USE_TANGENT: ''
 //             },
-//             vertexShader: vertexShader,
-//             fragmentShader: fragmentShader
+//             // vertexShader: vertexShader,
+//             // fragmentShader: fragmentShader
 //         })
 
 //         this.material.uniforms.uLightAPosition.value.setFromSpherical(this.lights.a.spherical)

@@ -56,6 +56,7 @@ class SCENE {
 
   setupControl() {
     this.controls = new OrbitControls(this.camera, this.canvas);
+    this.controls.enableDamping = true
   }
 
   setupRenderer() {
@@ -205,6 +206,9 @@ class SCENE {
     this.ligne.tick();
 
     // this.sphere.tick();
+
+    // Update controls
+    this.controls.update()
 
     // this.renderer.render(this.scene, this.camera);
     this.composer.render()
