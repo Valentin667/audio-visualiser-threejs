@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import AudioController from "../../utils/AudioController";
 
-export default class Ligne {
+export default class Line {
     constructor() {
         this.colors = [
             0xff0000, 0xff7f00, 0xffff00, 0x00ff00, 0x0000ff,

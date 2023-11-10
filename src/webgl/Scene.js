@@ -1,17 +1,30 @@
 import * as THREE from "three";
-import { gsap } from "gsap";
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import {
+  gsap
+} from "gsap";
+import {
+  GLTFLoader
+} from 'three/addons/loaders/GLTFLoader.js';
+import {
+  OrbitControls
+} from "three/addons/controls/OrbitControls.js";
+import {
+  EffectComposer
+} from 'three/addons/postprocessing/EffectComposer.js';
+import {
+  RenderPass
+} from 'three/addons/postprocessing/RenderPass.js';
+import {
+  UnrealBloomPass
+} from "three/addons/postprocessing/UnrealBloomPass.js";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import Torus from "./objects/Torus";
-import Ligne from "./objects/Ligne";
-// import Sphere from "./objects/Sphere";
+import Line from "./objects/Line";
+import Sphere from "./objects/Sphere";
 import pane from "../utils/Pane";
 import LogoIut from "./objects/LogoIut";
 import Board from "./objects/Board";
+import Cover from "./objects/Cover";
 
 class SCENE {
   setup(canvas) {
@@ -28,10 +41,15 @@ class SCENE {
     this.setupGLTFLoader();
     this.addObjects();
     this.addEvents();
+    this.setupTextureLoader();
   }
 
   setupGLTFLoader() {
     this.gltfLoader = new GLTFLoader();
+  }
+
+  setupTextureLoader(){
+    this.textureLoader = new THREE.TextureLoader();
   }
 
   setupScene() {
@@ -51,7 +69,7 @@ class SCENE {
       10000
     );
 
-    this.camera.position.z = 1000;
+    this.camera.position.z = 5;
   }
 
   setupControl() {
@@ -100,34 +118,34 @@ class SCENE {
     });
 
     this.postProcessFolder
-    .addBinding(this.BLOOM_PARAMS, "strength", {
-      min: 0,
-      max: 5,
-      step: 0.01,
-      label: "Force de l'effet"
-    }).on('change', (e) => {
-      this.bloomPass.strength = e.value;
-    });
+      .addBinding(this.BLOOM_PARAMS, "strength", {
+        min: 0,
+        max: 5,
+        step: 0.01,
+        label: "Force de l'effet"
+      }).on('change', (e) => {
+        this.bloomPass.strength = e.value;
+      });
 
     this.postProcessFolder
-    .addBinding(this.BLOOM_PARAMS, "radius", {
-      min: 0,
-      max: 5,
-      step: 0.01,
-      label: "Radius"
-    }).on('change', (e) => {
-      this.bloomPass.radius = e.value;
-    });
+      .addBinding(this.BLOOM_PARAMS, "radius", {
+        min: 0,
+        max: 5,
+        step: 0.01,
+        label: "Radius"
+      }).on('change', (e) => {
+        this.bloomPass.radius = e.value;
+      });
 
     this.postProcessFolder
-    .addBinding(this.BLOOM_PARAMS, "threshold", {
-      min: 0,
-      max: 1,
-      step: 0.01,
-      label: "threshold"
-    }).on('change', (e) => {
-      this.bloomPass.threshold = e.value;
-    });
+      .addBinding(this.BLOOM_PARAMS, "threshold", {
+        min: 0,
+        max: 1,
+        step: 0.01,
+        label: "threshold"
+      }).on('change', (e) => {
+        this.bloomPass.threshold = e.value;
+      });
   }
 
   addEvents() {
@@ -146,18 +164,20 @@ class SCENE {
 
   addObjects() {
     this.torus = new Torus();
-    this.ligne = new Ligne();
+    this.line = new Line();
     this.logoiut = new LogoIut();
-    // this.sphere = new Sphere();
+    this.sphere = new Sphere();
     this.board = new Board();
+    this.cover = new Cover();
 
-    this.selectedObject = this.torus;
+    this.selectedObject = this.cover;
     this.scene.add(this.selectedObject.group);
-    
+    // this.scene.add(this.sphere.mesh);
+
     // this.scene.add(this.torus.mesh);
   }
 
-  changeVisualiser(index){
+  changeVisualiser(index) {
     this.scene.remove(this.selectedObject.group)
     switch (index) {
       case 0:
@@ -165,29 +185,35 @@ class SCENE {
         this.camera.position.z = -100
         this.bloomPass.strength = 1
         break;
-         
+
       case 1:
-        this.selectedObject = this.ligne
+        this.selectedObject = this.line
         this.camera.position.z = 1000
         this.bloomPass.strength = 1
         break;
 
-        case 2:
+      case 2:
         this.selectedObject = this.logoiut
         this.camera.position.z = 10
         this.bloomPass.strength = 1
         break;
 
-        // case 3:
-        // this.selectedObject = this.sphere
-        // this.camera.position.z = 10
-        // this.bloomPass.strength = 1
-        // break;
+      case 3:
+        this.selectedObject = this.sphere
+        this.camera.position.z = 10
+        this.bloomPass.strength = 1
+        break;
 
-        case 4:
+      case 4:
         this.selectedObject = this.board;
         this.camera.position.z = 100;
         this.bloomPass.strength = 0.35
+        break;
+
+      case 5:
+        this.selectedObject = this.cover;
+        this.camera.position.z = 100;
+        this.bloomPass.strength = 0;
         break;
 
       default:
@@ -202,8 +228,8 @@ class SCENE {
 
     // this.torus.tick();
     this.selectedObject.tick(deltaTime);
-    
-    this.ligne.tick();
+
+    this.line.tick();
 
     // this.sphere.tick();
 

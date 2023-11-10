@@ -6,10 +6,8 @@
     opacity: 0.5;
     transition: opacity 0.25s;
 
-    &:active {
+    &__active {
         opacity: 1;
-        color: white;
-        background-color: white;
     }
 
     &:hover {
@@ -21,10 +19,9 @@
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-
-        &:active {
-            opacity: 1;
-            color: white;
-        }
     }
 }
+
+// .song__active {
+//     opacity: 1;
+// }

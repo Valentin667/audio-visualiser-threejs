@@ -31,7 +31,7 @@ class AUDIO_CONTROLLER {
 
     tick= () => {
         this.analyser.getByteFrequencyData(this.fdata);
-        console.log(this.fdata);
+        // console.log(this.fdata);
     }
 }
 
