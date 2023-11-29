@@ -1,21 +1,22 @@
 .picker {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    display: flex;
-    flex-direction: column;
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
 
-    div {
-        opacity: 0.5;
-        transition: all 0.5s;
-        cursor: pointer;
+  div {
+    opacity: 0.5;
+    transition: all 0.5s;
+    cursor: pointer;
 
-        &__active {
-            opacity: 1;
-        }
-
-        &:hover {
-            opacity: 1;
-        }
+    &:hover {
+      opacity: 0.8;
     }
+
+    &.active {
+      opacity: 1;
+    }
+  }
 }

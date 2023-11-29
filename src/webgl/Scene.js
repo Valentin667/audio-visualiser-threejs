@@ -1,22 +1,10 @@
 import * as THREE from "three";
-import {
-  gsap
-} from "gsap";
-import {
-  GLTFLoader
-} from 'three/addons/loaders/GLTFLoader.js';
-import {
-  OrbitControls
-} from "three/addons/controls/OrbitControls.js";
-import {
-  EffectComposer
-} from 'three/addons/postprocessing/EffectComposer.js';
-import {
-  RenderPass
-} from 'three/addons/postprocessing/RenderPass.js';
-import {
-  UnrealBloomPass
-} from "three/addons/postprocessing/UnrealBloomPass.js";
+import { gsap } from "gsap";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import Torus from "./objects/Torus";
 import Line from "./objects/Line";
@@ -48,7 +36,7 @@ class SCENE {
     this.gltfLoader = new GLTFLoader();
   }
 
-  setupTextureLoader(){
+  setupTextureLoader() {
     this.textureLoader = new THREE.TextureLoader();
   }
 
@@ -74,7 +62,7 @@ class SCENE {
 
   setupControl() {
     this.controls = new OrbitControls(this.camera, this.canvas);
-    this.controls.enableDamping = true
+    this.controls.enableDamping = true;
   }
 
   setupRenderer() {
@@ -99,8 +87,8 @@ class SCENE {
     this.BLOOM_PARAMS = {
       strength: 1,
       radius: 1,
-      threshold: 0
-    }
+      threshold: 0,
+    };
     this.composer = new EffectComposer(this.renderer);
     this.scenePass = new RenderPass(this.scene, this.camera);
     this.bloomPass = new UnrealBloomPass(
@@ -122,8 +110,9 @@ class SCENE {
         min: 0,
         max: 5,
         step: 0.01,
-        label: "Force de l'effet"
-      }).on('change', (e) => {
+        label: "Force de l'effet",
+      })
+      .on("change", (e) => {
         this.bloomPass.strength = e.value;
       });
 
@@ -132,8 +121,9 @@ class SCENE {
         min: 0,
         max: 5,
         step: 0.01,
-        label: "Radius"
-      }).on('change', (e) => {
+        label: "Radius",
+      })
+      .on("change", (e) => {
         this.bloomPass.radius = e.value;
       });
 
@@ -142,8 +132,9 @@ class SCENE {
         min: 0,
         max: 1,
         step: 0.01,
-        label: "threshold"
-      }).on('change', (e) => {
+        label: "threshold",
+      })
+      .on("change", (e) => {
         this.bloomPass.threshold = e.value;
       });
   }
@@ -178,36 +169,36 @@ class SCENE {
   }
 
   changeVisualiser(index) {
-    this.scene.remove(this.selectedObject.group)
+    this.scene.remove(this.selectedObject.group);
     switch (index) {
       case 0:
-        this.selectedObject = this.torus
-        this.camera.position.z = -100
-        this.bloomPass.strength = 1
+        this.selectedObject = this.torus;
+        this.camera.position.z = -100;
+        this.bloomPass.strength = 1;
         break;
 
       case 1:
-        this.selectedObject = this.line
-        this.camera.position.z = 1000
-        this.bloomPass.strength = 1
+        this.selectedObject = this.line;
+        this.camera.position.z = 1000;
+        this.bloomPass.strength = 1;
         break;
 
       case 2:
-        this.selectedObject = this.logoiut
-        this.camera.position.z = 10
-        this.bloomPass.strength = 1
+        this.selectedObject = this.logoiut;
+        this.camera.position.z = 10;
+        this.bloomPass.strength = 1;
         break;
 
       case 3:
-        this.selectedObject = this.sphere
-        this.camera.position.z = 10
-        this.bloomPass.strength = 1
+        this.selectedObject = this.sphere;
+        this.camera.position.z = 10;
+        this.bloomPass.strength = 1;
         break;
 
       case 4:
         this.selectedObject = this.board;
         this.camera.position.z = 100;
-        this.bloomPass.strength = 0.35
+        this.bloomPass.strength = 0.35;
         break;
 
       case 5:
@@ -217,10 +208,10 @@ class SCENE {
         break;
 
       default:
-        break
+        break;
     }
     this.controls.update();
-    this.scene.add(this.selectedObject.group)
+    this.scene.add(this.selectedObject.group);
   }
 
   tick = (time, deltaTime, frame) => {
@@ -234,10 +225,10 @@ class SCENE {
     // this.sphere.tick();
 
     // Update controls
-    this.controls.update()
+    this.controls.update();
 
     // this.renderer.render(this.scene, this.camera);
-    this.composer.render()
+    this.composer.render();
 
     this.stats.end();
     // gsap.ticker.add(this.tick);

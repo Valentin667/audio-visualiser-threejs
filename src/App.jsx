@@ -6,14 +6,13 @@ import useCustomStore from "./customStore";
 import Picker from "./components/picker/Picker";
 
 function App() {
-
-  const songs = useCustomStore(state => state.songs);
+  const songs = useCustomStore((state) => state.songs);
 
   return (
     <div className="App">
       <div className={s.songs}>
         {songs.map((song, key) => {
-          return <Song key={key} data={song} />
+          return <Song key={key} data={song} />;
         })}
       </div>
       <Search />

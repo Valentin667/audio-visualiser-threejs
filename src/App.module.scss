@@ -1,8 +1,9 @@
 .songs {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    display: flex;
-    flex-direction: column;
-    row-gap: 12px;
+  position: fixed;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 12px;
+  height: 100vh;
 }

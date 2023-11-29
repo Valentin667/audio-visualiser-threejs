@@ -1,27 +1,36 @@
 .song {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.25s, transform 200ms ease-out;
+  height: 100px;
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateX(-50px);
+    transition: 200ms;
+  }
+
+  &.active {
+    opacity: 1;
+    transform: translateX(-50px);
+    transition: 200ms;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
     display: flex;
-    align-items: center;
-    column-gap: 24px;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.25s;
+  }
 
-    &__active {
-        opacity: 1;
-    }
-
-    &:hover {
-        opacity: 1;
-    }
-
-    .title {
-        max-width: 150px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+  .title {
+    font-size: 1.3em;
+    max-width: 150px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
-
-// .song__active {
-//     opacity: 1;
-// }
