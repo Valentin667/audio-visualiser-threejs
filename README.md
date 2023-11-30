@@ -1,6 +1,6 @@
 ## Audio Visualiser with React and Three.js
 
-Dans le cadre du module développement front en BUT MMI, j’ai dû réaliser un Audio Visualiser avec [Three.js](https://threejs.org/). J'ai été complétement libre du choix du design et des nouvelles fonctionnalités. C'est pour cela que j'ai eu l'idée de créer un clone de [Discord](https://discord.com/) car, c'est une application que j'utilise au quotidien avec un design qui me plaît énormément, moderne avec beaucoup de micro-interactions.
+Dans le cadre du module développement front en BUT MMI, j’ai dû réaliser un Audio Visualiser avec [Three.js](https://threejs.org/). Les musiques sont récupérés grâce à l'API de [Deezer].(https://developers.deezer.com/login?redirect=/api) J'ai ensuite été libre du choix du design et des objets 3D que je voulais rajouter.
 
 ## Links
 
