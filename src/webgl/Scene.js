@@ -5,7 +5,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import Stats from "three/examples/jsm/libs/stats.module.js";
+// import Stats from "three/examples/jsm/libs/stats.module.js";
 import Torus from "./objects/Torus";
 import Vinyl from "./objects/Vinyl";
 import Line from "./objects/Line";
@@ -22,7 +22,7 @@ class SCENE {
     this.canvas = canvas;
 
     this.setupScene();
-    this.setupStats();
+    // this.setupStats();
     this.setupCamera();
     this.setupControl();
     this.setupRenderer();
@@ -45,10 +45,10 @@ class SCENE {
     this.scene = new THREE.Scene();
   }
 
-  setupStats() {
-    this.stats = new Stats();
-    document.body.appendChild(this.stats.dom);
-  }
+  // setupStats() {
+  //   this.stats = new Stats();
+  //   document.body.appendChild(this.stats.dom);
+  // }
 
   setupCamera() {
     this.camera = new THREE.PerspectiveCamera(
@@ -224,7 +224,7 @@ class SCENE {
   }
 
   tick = (time, deltaTime, frame) => {
-    this.stats.begin();
+    // this.stats.begin();
 
     // this.torus.tick();
     this.selectedObject.tick(deltaTime);
@@ -239,7 +239,7 @@ class SCENE {
     // this.renderer.render(this.scene, this.camera);
     this.composer.render();
 
-    this.stats.end();
+    // this.stats.end();
     // gsap.ticker.add(this.tick);
   };
 }

@@ -72,7 +72,11 @@ const Search = () => {
         onKeyDown={onKeyDown}
       ></input>
       <div className={s.drop_zone} {...getRootProps()}>
-        <input type="submit" value="Drop song" {...getInputProps} />
+        <input
+          type="submit"
+          value="Click to choose a song"
+          {...getInputProps}
+        />
       </div>
       {isDragActive && <input {...getInputProps} />}
     </div>

@@ -7,6 +7,7 @@
   transition: opacity 0.25s, transform 200ms ease-out;
   height: 100px;
   animation: slideInLeft 0.5s ease-out;
+  z-index: 1;
 
   @keyframes slideInLeft {
     from {
