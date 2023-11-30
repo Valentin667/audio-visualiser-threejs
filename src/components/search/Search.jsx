@@ -66,6 +66,7 @@ const Search = () => {
         type="text"
         placeholder="Type a song or an artist name"
         className={s.search}
+        spellCheck="false"
         value={artist}
         onChange={(e) => setArtist(e.target.value)}
         onKeyDown={onKeyDown}

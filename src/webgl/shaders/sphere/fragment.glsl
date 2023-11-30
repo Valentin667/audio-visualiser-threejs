@@ -1,6 +1,7 @@
-varying vec3 vColor;
+uniform vec2 u_resolution;
 
-void main()
-{
-    gl_FragColor = vec4(vColor, 1.0);
+void main() {
+    vec2 st = gl_FragCoord.xy / u_resolution;
+
+    gl_FragColor = vec4(vec3(st.x, st.y, 1.0), 1.0);
 }

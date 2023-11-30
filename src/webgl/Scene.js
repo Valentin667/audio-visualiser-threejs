@@ -7,8 +7,9 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import Torus from "./objects/Torus";
+import Vinyl from "./objects/Vinyl";
 import Line from "./objects/Line";
-// import Sphere from "./objects/Sphere";
+import Sphere from "./objects/Sphere";
 import pane from "../utils/Pane";
 import LogoIut from "./objects/LogoIut";
 import Board from "./objects/Board";
@@ -57,7 +58,7 @@ class SCENE {
       10000
     );
 
-    this.camera.position.z = 5;
+    this.camera.position.z = 70;
   }
 
   setupControl() {
@@ -72,7 +73,7 @@ class SCENE {
       powerPreference: "high-performance",
       stencil: false,
       depth: false,
-      // alpha: true
+      alpha: true,
     });
 
     this.renderer.toneMapping = THREE.NoToneMapping;
@@ -157,15 +158,16 @@ class SCENE {
     this.torus = new Torus();
     this.line = new Line();
     this.logoiut = new LogoIut();
-    // this.sphere = new Sphere();
+    this.sphere = new Sphere();
     this.board = new Board();
     this.cover = new Cover();
+    this.vinyl = new Vinyl();
 
     this.selectedObject = this.cover;
+
     this.scene.add(this.selectedObject.group);
     // this.scene.add(this.sphere.mesh);
-
-    // this.scene.add(this.torus.mesh);
+    this.controls.update();
   }
 
   changeVisualiser(index) {
@@ -173,38 +175,44 @@ class SCENE {
     switch (index) {
       case 0:
         this.selectedObject = this.torus;
-        this.camera.position.z = -100;
+        this.camera.position.set(0, 0, -150);
         this.bloomPass.strength = 1;
         break;
 
       case 1:
         this.selectedObject = this.line;
-        this.camera.position.z = 1000;
+        this.camera.position.set(0, 0, 1000);
         this.bloomPass.strength = 1;
         break;
 
       case 2:
         this.selectedObject = this.logoiut;
-        this.camera.position.z = 10;
+        this.camera.position.set(0, 0, 20);
         this.bloomPass.strength = 1;
         break;
 
-      // case 3:
-      //   this.selectedObject = this.sphere;
-      //   this.camera.position.z = 10;
-      //   this.bloomPass.strength = 1;
-      //   break;
+      case 3:
+        this.selectedObject = this.sphere;
+        this.camera.position.z = -40;
+        this.bloomPass.strength = 0.5;
+        break;
 
       case 4:
         this.selectedObject = this.board;
-        this.camera.position.z = 100;
+        this.camera.position.set(0, 0, 80);
         this.bloomPass.strength = 0.35;
         break;
 
       case 5:
         this.selectedObject = this.cover;
-        this.camera.position.z = 100;
+        this.camera.position.set(0, 0, 80);
         this.bloomPass.strength = 0;
+        break;
+
+      case 6:
+        this.selectedObject = this.vinyl;
+        this.camera.position.set(0, 0, -150);
+        this.bloomPass.strength = 1;
         break;
 
       default:

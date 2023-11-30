@@ -3,7 +3,8 @@ import s from "./Picker.module.scss";
 import Scene from "../../webgl/Scene";
 
 const Picker = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const defaultActiveIndex = 5;
+  const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
 
   const pickVisualiser = (index) => {
     Scene.changeVisualiser(index);
@@ -30,12 +31,12 @@ const Picker = () => {
       >
         Logo IUT
       </div>
-      {/* <div
+      <div
         onClick={() => pickVisualiser(3)}
         className={activeIndex === 3 ? s.active : ""}
       >
         Sphere
-      </div> */}
+      </div>
       <div
         onClick={() => pickVisualiser(4)}
         className={activeIndex === 4 ? s.active : ""}
@@ -47,6 +48,12 @@ const Picker = () => {
         className={activeIndex === 5 ? s.active : ""}
       >
         Cover
+      </div>
+      <div
+        onClick={() => pickVisualiser(6)}
+        className={activeIndex === 6 ? s.active : ""}
+      >
+        Vinyl
       </div>
     </div>
   );
