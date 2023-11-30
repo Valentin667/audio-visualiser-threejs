@@ -2,13 +2,15 @@ import React, { useRef } from "react";
 import style from "./Song.module.scss";
 import AudioController from "../../utils/AudioController";
 import Scene from "../../webgl/Scene";
+import defaultCover from "../../assets/cover_not_loaded.jpeg";
 
 const Song = ({ data }) => {
   const activeRef = useRef(null);
 
   const pickSong = () => {
     AudioController.updateSong(data.preview);
-    Scene.cover.updateCover(data.album.cover);
+    const coverSrc = data.album.cover_medium || defaultCover;
+    Scene.cover.updateCover(coverSrc);
 
     // Retirer la classe active de l'ancien élément
     const activeSong = document.querySelector(`.${style.active}`);
@@ -25,7 +27,7 @@ const Song = ({ data }) => {
 
   return (
     <div className={`${style.song}`} onClick={pickSong} ref={activeRef}>
-      <img src={data.album.cover} alt={data.title} />
+      <img src={data.album.cover_medium || defaultCover} alt={data.title} />
       <span className={style.title}>{data.title}</span>
     </div>
   );

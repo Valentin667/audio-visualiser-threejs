@@ -10,6 +10,8 @@ export default class LogoIut {
 
     this.circles = [];
 
+    this.clock = new THREE.Clock();
+
     Scene.gltfLoader.load("/logo-iut.glb", (gltf) => {
       this.group = gltf.scene;
 
@@ -32,6 +34,13 @@ export default class LogoIut {
   tick(deltaTime) {
     const remapped = AudioController.fdata[0] / 255;
     this.icosphere.scale.set(1 + remapped, 1 + remapped, 1 + remapped);
+
+    const elapsedTime = this.clock.getElapsedTime();
+
+    const icosphereAngle = elapsedTime * 0.5;
+    this.group.position.x = Math.cos(icosphereAngle) * 4;
+    this.group.position.y = Math.sin(elapsedTime * 3);
+    this.group.position.z = Math.sin(icosphereAngle) * 4;
 
     this.circles[0].position.x = -1 + remapped;
     this.circles[1].position.z = 1 - remapped;

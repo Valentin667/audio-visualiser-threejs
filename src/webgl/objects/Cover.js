@@ -8,51 +8,50 @@ import vertexShader from "!!raw-loader!!glslify-loader!../../webgl/shaders/cover
 import pane from "../../utils/Pane";
 
 export default class Cover {
-    constructor() {
-        this.geometry = new THREE.PlaneGeometry(20, 20, 512, 512);
-        this.material = new THREE.ShaderMaterial({
-            // size: 0.02,
-            // sizeAttenuation: true
-            // wireframe: false,
-            uniforms: {
-                uMap: { value: null },
-                uBassFrequency: { value: 0 },
-                uTIme: { value: 0 },
-                uNoiseFrequency : { value: 1}
-            },
-            side : THREE.DoubleSide,
-            fragmentShader : fragmentShader,
-            vertexShader: vertexShader
-        });
+  constructor() {
+    this.geometry = new THREE.PlaneGeometry(20, 20, 512, 512);
+    this.material = new THREE.ShaderMaterial({
+      // size: 0.02,
+      // sizeAttenuation: true
+      // wireframe: false,
+      uniforms: {
+        uMap: { value: null },
+        uBassFrequency: { value: 0 },
+        uTime: { value: 0 },
+        uNoiseFrequency: { value: 0.25 },
+      },
+      side: THREE.DoubleSide,
+      fragmentShader: fragmentShader,
+      vertexShader: vertexShader,
+    });
 
-        this.mesh = new THREE.Points(this.geometry, this.material);
-        this.group = new THREE.Group();
-        this.group.add(this.mesh);
+    this.mesh = new THREE.Points(this.geometry, this.material);
+    this.group = new THREE.Group();
+    this.group.add(this.mesh);
 
-        this.folder = pane.addFolder({  
-            title: "Cover",
-        });
+    this.folder = pane.addFolder({
+      title: "Cover",
+    });
 
-        this.folder.addBinding(this.material.uniforms.uNoiseFrequency,
-            "value",{
-                min: -5,
-                max: 5,
-                step: 0.001,
-                label: "uNoiseFrequency"
-            })
-    }
+    this.folder.addBinding(this.material.uniforms.uNoiseFrequency, "value", {
+      min: -5,
+      max: 5,
+      step: 0.001,
+      label: "uNoiseFrequency",
+    });
+  }
 
-    updateCover(src){
-        Scene.textureLoader.load(src, (texture) => {
-            // this.material.map = texture;
+  updateCover(src) {
+    Scene.textureLoader.load(src, (texture) => {
+      // this.material.map = texture;
 
-            this.material.uniforms.uMap.value = texture;
-            this.material.needsUpdate = true
-        });
-    }
+      this.material.uniforms.uMap.value = texture;
+      this.material.needsUpdate = true;
+    });
+  }
 
-    tick(deltaTime) {
-        this.material.uniforms.uTIme.value += deltaTime * 0.001;
-        this.material.uniforms.uBassFrequency.value = AudioController.fdata[0];
-    }
+  tick(deltaTime) {
+    this.material.uniforms.uTime.value += deltaTime * 0.001;
+    this.material.uniforms.uBassFrequency.value = AudioController.fdata[0];
+  }
 }

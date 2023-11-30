@@ -8,7 +8,7 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import Torus from "./objects/Torus";
 import Line from "./objects/Line";
-import Sphere from "./objects/Sphere";
+// import Sphere from "./objects/Sphere";
 import pane from "../utils/Pane";
 import LogoIut from "./objects/LogoIut";
 import Board from "./objects/Board";
@@ -157,7 +157,7 @@ class SCENE {
     this.torus = new Torus();
     this.line = new Line();
     this.logoiut = new LogoIut();
-    this.sphere = new Sphere();
+    // this.sphere = new Sphere();
     this.board = new Board();
     this.cover = new Cover();
 
@@ -189,11 +189,11 @@ class SCENE {
         this.bloomPass.strength = 1;
         break;
 
-      case 3:
-        this.selectedObject = this.sphere;
-        this.camera.position.z = 10;
-        this.bloomPass.strength = 1;
-        break;
+      // case 3:
+      //   this.selectedObject = this.sphere;
+      //   this.camera.position.z = 10;
+      //   this.bloomPass.strength = 1;
+      //   break;
 
       case 4:
         this.selectedObject = this.board;

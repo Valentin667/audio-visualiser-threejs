@@ -30,12 +30,12 @@ const Picker = () => {
       >
         Logo IUT
       </div>
-      <div
+      {/* <div
         onClick={() => pickVisualiser(3)}
         className={activeIndex === 3 ? s.active : ""}
       >
         Sphere
-      </div>
+      </div> */}
       <div
         onClick={() => pickVisualiser(4)}
         className={activeIndex === 4 ? s.active : ""}

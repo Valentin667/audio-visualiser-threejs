@@ -16,6 +16,9 @@ const Search = () => {
       album: {
         cover_small: "",
       },
+      artist: {
+        name: "Local",
+      },
       preview: src,
     };
 
@@ -25,7 +28,6 @@ const Search = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    noClick: true,
     accept: {
       "audio/mpeg": [".mp3"],
     },
@@ -48,24 +50,29 @@ const Search = () => {
 
     response = await response.json();
 
+    // console.log(response);
+
     const data = response.data.slice(0, 6);
+
     AudioController.ctx.resume();
     setSongs(data);
-    setArtist("");
   };
 
   console.log(isDragActive);
 
   return (
-    <div className={s.searchWrapper} {...getRootProps()}>
+    <div>
       <input
         type="text"
-        placeholder="Type a song"
+        placeholder="Type a song or an artist name"
+        className={s.search}
         value={artist}
         onChange={(e) => setArtist(e.target.value)}
         onKeyDown={onKeyDown}
       ></input>
-
+      <div className={s.drop_zone} {...getRootProps()}>
+        <input type="submit" value="Drop song" {...getInputProps} />
+      </div>
       {isDragActive && <input {...getInputProps} />}
     </div>
   );
