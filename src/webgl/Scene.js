@@ -161,7 +161,7 @@ class SCENE {
     this.sphere = new Sphere();
     this.board = new Board();
     this.cover = new Cover();
-    this.vinyl = new Vinyl();
+    this.vinyl = new Vinyl(this.renderer);
 
     this.selectedObject = this.cover;
 
@@ -211,6 +211,7 @@ class SCENE {
 
       case 6:
         this.selectedObject = this.vinyl;
+        this.selectedObject.setActive(true);
         this.camera.position.set(0, 0, -150);
         this.bloomPass.strength = 1;
         break;

@@ -4,8 +4,14 @@ import * as THREE from "three";
 
 import AudioController from "../../utils/AudioController";
 
+const renderer = new THREE.WebGLRenderer();
+
 export default class Vinyl {
-  constructor() {
+  constructor(renderer) {
+    this.active = true;
+    this.renderer = renderer;
+    this.group = new THREE.Group();
+
     // Créer le disque vinyl
     const vinylGeometry = new THREE.CylinderGeometry(4, 4, 0.1, 32);
     const vinylMaterial = new THREE.MeshStandardMaterial({
@@ -75,7 +81,6 @@ export default class Vinyl {
     this.ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 
     // Groupe pour regrouper les éléments du vinyl
-    this.group = new THREE.Group();
     this.group.position.set(0, 0, 0);
     this.group.rotation.x = Math.PI * -0.5;
     this.group.add(this.vinylMesh);
@@ -83,6 +88,17 @@ export default class Vinyl {
     this.group.add(this.holeMesh);
     this.group.add(this.light);
     this.group.add(this.ambientLight);
+  }
+
+  setActive(active) {
+    this.active = active;
+
+    // Utiliser this.renderer au lieu de renderer
+    if (this.active) {
+      this.renderer.setClearColor(0x000000); // Remplacez par la couleur souhaitée
+    } else {
+      this.renderer.setClearColor(0xffffff); // Remplacez par la couleur souhaitée
+    }
   }
 
   tick(deltaTime) {

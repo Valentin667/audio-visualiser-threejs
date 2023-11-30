@@ -61,13 +61,13 @@ const Search = () => {
   console.log(isDragActive);
 
   return (
-    <div>
+    <div className={s.search}>
       <input
         type="text"
         placeholder="Type a song or an artist name"
-        className={s.search}
         spellCheck="false"
         value={artist}
+        className={s.search_bar}
         onChange={(e) => setArtist(e.target.value)}
         onKeyDown={onKeyDown}
       ></input>
