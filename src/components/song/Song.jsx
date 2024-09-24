@@ -12,16 +12,13 @@ const Song = ({ data }) => {
     const coverSrc = data.album.cover_medium || defaultCover;
     Scene.cover.updateCover(coverSrc);
 
-    // Retirer la classe active de l'ancien élément
     const activeSong = document.querySelector(`.${style.active}`);
     if (activeSong) {
       activeSong.classList.remove(style.active);
     }
 
-    // Ajouter la classe active au nouvel élément
     activeRef.current.classList.add(style.active);
 
-    // Mettez à jour le titre de la page
     document.title = `${data.title} - ${data.artist.name}`;
   };
 
