@@ -49,12 +49,6 @@ const Picker = () => {
       >
         Cover
       </div>
-      <div
-        onClick={() => pickVisualiser(6)}
-        className={activeIndex === 6 ? s.active : ""}
-      >
-        Vinyl
-      </div>
     </div>
   );
 };

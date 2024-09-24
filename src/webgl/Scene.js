@@ -7,7 +7,6 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 // import Stats from "three/examples/jsm/libs/stats.module.js";
 import Torus from "./objects/Torus";
-import Vinyl from "./objects/Vinyl";
 import Line from "./objects/Line";
 import Sphere from "./objects/Sphere";
 import pane from "../utils/Pane";
@@ -161,7 +160,6 @@ class SCENE {
     this.sphere = new Sphere();
     this.board = new Board();
     this.cover = new Cover();
-    this.vinyl = new Vinyl(this.renderer);
 
     this.selectedObject = this.cover;
 
@@ -193,7 +191,7 @@ class SCENE {
 
       case 3:
         this.selectedObject = this.sphere;
-        this.camera.position.z = -40;
+        this.camera.position.z = -23;
         this.bloomPass.strength = 0.5;
         break;
 
@@ -207,13 +205,6 @@ class SCENE {
         this.selectedObject = this.cover;
         this.camera.position.set(0, 0, 80);
         this.bloomPass.strength = 0;
-        break;
-
-      case 6:
-        this.selectedObject = this.vinyl;
-        this.selectedObject.setActive(true);
-        this.camera.position.set(0, 0, -150);
-        this.bloomPass.strength = 1;
         break;
 
       default:

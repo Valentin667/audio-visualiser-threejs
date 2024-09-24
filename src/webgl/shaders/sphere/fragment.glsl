@@ -1,7 +1,17 @@
-uniform vec2 u_resolution;
+uniform float u_intensity;
+uniform float u_time;
+
+varying vec2 vUv;
+varying float vDisplacement;
 
 void main() {
-    vec2 st = gl_FragCoord.xy / u_resolution;
+    float distort = 1.5 * vDisplacement * u_intensity;
 
-    gl_FragColor = vec4(vec3(st.x, st.y, 1.0), 1.0);
+    vec3 color = vec3(
+        abs(vUv.x - 0.5) * 2.0 * (0.5 - distort),
+        abs(vUv.y - 0.5) * 2.0 * (0.5 - distort),
+        1.0 - abs(distort)
+    );
+  
+    gl_FragColor = vec4(color, 1.0);
 }

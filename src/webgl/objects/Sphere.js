@@ -13,20 +13,24 @@ export default class Sphere {
         value: new THREE.Vector2(window.innerWidth, window.innerHeight),
       },
       u_time: { type: "f", value: 0.0 },
+      u_intensity: {
+        type: "f",
+        value: 0.3, // Vous pouvez ajuster cette valeur
+      },
+      uBassFrequency: {
+        type: "f",
+        value: 0
+      },
     };
 
     // Créer la géométrie de la sphère
-    const geometry = new THREE.IcosahedronGeometry(4, 10);
+    const geometry = new THREE.IcosahedronGeometry(2, 20);
 
     // Créer le matériau de la sphère
     const material = new THREE.ShaderMaterial({
-      wireframe: true,
-      uniforms: {
-        uBassFrequency: { value: 0 },
-        uTime: { value: 0 },
-      },
-      // vertexShader: vertexShader,
-      // fragmentShader: fragmentShader,
+      uniforms: uniforms,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
     });
 
     // Créer le mesh de la sphère
@@ -46,7 +50,7 @@ export default class Sphere {
 
     // uniforms.u_time.value += 0.01 * deltaTime * 0.01;
 
-    // this.mesh.material.uniforms.uTime.value += deltaTime * 0.001;
-    // this.mesh.material.uniforms.uBassFrequency.value = AudioController.fdata[0];
+    this.mesh.material.uniforms.u_time.value += deltaTime * 0.001;
+    this.mesh.material.uniforms.uBassFrequency.value = AudioController.fdata[0];
   }
 }
